@@ -12,6 +12,7 @@ wget --timeout=30 --waitretry=2 --tries=3 -q $GEOIP -O ./rule/$TMP_GEOIP
 if [ $? -eq 0 ];then
     echo "[NOTICE] get geoip.dat successfully!"
     ./v2dat unpack geoip -o ./rule -f cn ./rule/$TMP_GEOIP
+    ./v2dat unpack geoip -o ./rule -f private ./rule/$TMP_GEOIP
 else
     echo "get geoip.dat failed! please check your network!"
     exit 1
@@ -21,6 +22,7 @@ wget --timeout=30 --waitretry=2 --tries=3 -q $GEOSITE -O ./rule/$TMP_GEOSITE
 if [ $? -eq 0 ];then
     echo "[NOTICE] get geosite.dat successfully!"
     ./v2dat unpack geosite -o ./rule -f cn ./rule/$TMP_GEOSITE
+    ./v2dat unpack geosite -o ./rule -f gfw ./rule/$TMP_GEOSITE
     ./v2dat unpack geosite -o ./rule -f category-ads-all ./rule/$TMP_GEOSITE
     ./v2dat unpack geosite -o ./rule -f geolocation-\!cn ./rule/$TMP_GEOSITE
     mv ./rule/geosite_geolocation-\!cn.txt ./rule/geolocation-no-cn.txt
